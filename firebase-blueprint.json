@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "submission": {
+      "title": "Game Submission",
+      "description": "A user's response to a Truth or Dare prompt.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user who submitted the response."
+        },
+        "promptType": {
+          "type": "string",
+          "enum": ["truth", "dare"],
+          "description": "The type of prompt (truth or dare)."
+        },
+        "promptText": {
+          "type": "string",
+          "description": "The text of the prompt."
+        },
+        "answer": {
+          "type": "string",
+          "description": "The user's text answer."
+        },
+        "videoUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "A URL to a video recording of the response."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the submission was created."
+        }
+      },
+      "required": ["userId", "promptType", "promptText", "answer", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/submissions/{submissionId}": {
+      "schema": "submission",
+      "description": "Collection of all game submissions."
+    }
+  }
+}
